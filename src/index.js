@@ -6,6 +6,8 @@ import alcoolImg from "./assets/images/alcool.png"
 import glovesImg from "./assets/images/gloves.png"
 import soapImg from "./assets/images/soap.png"
 import virusImg from "./assets/images/virus.png"
+import backgroundSong from "./assets/audio/background.wav"
+import hitSound from "./assets/audio/hit.wav"
 
 const config = {
   type: Phaser.AUTO,
@@ -35,9 +37,15 @@ function preload() {
   this.load.image('soap', soapImg)
   this.load.image('virus', virusImg)
   this.load.image('basket', basketImg)
+  this.load.audio('backgroundSong', backgroundSong);
+  this.load.audio('hitSound', hitSound);
 }
 
 function create() {
+  this.hitSound = this.sound.add('hitSound');
+  this.backgroundSong = this.sound.add('backgroundSong');
+  this.backgroundSong.play()
+
   const background = this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background')
   background.setScale(3)
 
@@ -116,6 +124,7 @@ function createItem(scene) {
   itemSprite.on('pointerdown', function(){
     const score = this.scene.scoreText
     const currentScore = score.text
+    this.scene.hitSound.play()
 
     score.setText(parseInt(currentScore) + 10)
   });
