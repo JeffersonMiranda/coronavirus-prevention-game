@@ -35,7 +35,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "path": "^0.12.7",
-    "phaser": "^3.20.1"
+    "phaser": "^3.20.1",
+    "server-static": "^2.0.5"
   },
   "engines": {
     "node": "12.3.1"
