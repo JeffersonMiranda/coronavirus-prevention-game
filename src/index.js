@@ -44,7 +44,9 @@ function preload() {
 function create() {
   this.hitSound = this.sound.add('hitSound');
   this.backgroundSong = this.sound.add('backgroundSong');
-  this.backgroundSong.play()
+  this.backgroundSong.play({
+    loop: -1
+  })
 
   const background = this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background')
   background.setScale(3)
