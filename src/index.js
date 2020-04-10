@@ -69,7 +69,7 @@ function create() {
   const currentScene = this
 
   this.time.addEvent({
-    delay: 5000,
+    delay: 15000,
     callback: () => {
       // let newLevel = ++levelClass.currentLevel
       // levelClass.checkLevel()
