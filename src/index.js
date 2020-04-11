@@ -6,6 +6,7 @@ import alcoolImg from "./assets/images/alcool.png"
 import glovesImg from "./assets/images/gloves.png"
 import soapImg from "./assets/images/soap.png"
 import virusImg from "./assets/images/virus.png"
+import heartImg from "./assets/images/heart.png"
 import backgroundSong from "./assets/audio/background.wav"
 import hitSound from "./assets/audio/hit.wav"
 import gameOverSound from "./assets/audio/gameover.mp3"
@@ -38,6 +39,7 @@ function preload() {
   this.load.image('soap', soapImg)
   this.load.image('virus', virusImg)
   this.load.image('basket', basketImg)
+  this.load.image('heart', heartImg)
   this.load.audio('backgroundSong', backgroundSong);
   this.load.audio('hitSound', hitSound);
   this.load.audio('gameOverSound', gameOverSound);
@@ -59,21 +61,18 @@ function create() {
 
   this.scoreText = this.add.text(this.basket.x + 140, 165, '0', { fontSize: '80px', fill: '#fff' });
 
-  // this.scoreText.setText(10)
+  this.lives = 3
+  this.livesBoard = this.physics.add.staticGroup()
+
+  for (let index = 1; index <= 3; index++) {
+    this.livesBoard.create(window.innerWidth - (70 * index), 200 , 'heart')
+  }
   
   const newItem = () => createItem(this)
-// debugger
-  // this.time.delayedCall(1, newItem, null, this)
 
   this.itemsCreation = this.time.addEvent({
     delay: 2000,
     callback: () => {
-      // let newLevel = ++levelClass.currentLevel
-      // levelClass.checkLevel()
-      // this.itemsCreation = setInterval(newItem, 2500)
-      // console.log('level up')
-      // debugger
-      // this.scene.itemsCreation = newItem()
       newItem()
     },
     repeat: -1
@@ -84,41 +83,22 @@ function create() {
   this.time.addEvent({
     delay: 15000,
     callback: () => {
-      // let newLevel = ++levelClass.currentLevel
-      // levelClass.checkLevel()
-      // this.itemsCreation = setInterval(newItem, 2500)
-      console.log('level up')
-      // debugger
-      // this.scene.itemsCreation = newItem()
-      // currentScene.itemsCreation.remove()  //newItem()
       const currentDelay = currentScene.itemsCreation.delay
       const newDelay = currentDelay - (currentDelay * 0.25)
 
       if (newDelay > 250) {
         currentScene.itemsCreation.delay = currentDelay - (currentDelay * 0.25) 
       }
-
-      console.log(currentScene.itemsCreation.delay)
-
-
     },
     repeat: -1
   })
-
-
-}
-
-function update() {
-  
 }
 
 function createItem(scene) {
-  // console.log('new item')
   const items = ['mask', 'alcool', 'gloves', 'soap', 'virus']
-
   const randomItem = items[Math.floor(Math.random() * items .length)];
+  const randomItemHeightFall = Math.random() * (((window.innerHeight / 2 - 400))  - window.innerHeight / 2 ) + window.innerHeight / 2; 
 
-// console.log(randomItem)
   var itemSprite = scene.physics.add.image(window.innerWidth / 2, window.innerHeight, randomItem)
                                      .setScale(0.5)
                                      .setInteractive()
@@ -129,35 +109,39 @@ function createItem(scene) {
 
   itemSprite.setVelocity(randomVelocity * getRandomNumberSignal());
 
-
   const itemTween = scene.tweens.add({
     targets: itemSprite,
-    y: window.innerHeight / 2,
+    y: randomItemHeightFall,
     duration: 800,
     ease: 'Power2',
     yoyo: true,
-    rotation: getRandomNumberSignal()
-    // loop: -1
+    rotation: getRandomNumberSignal(),
+    onComplete: () => {
+      if (!itemSprite.isVirus && scene.lives) {
+        scene.livesBoard.getChildren()[scene.lives - 1].alpha = 0
+        scene.lives--
+
+        if (!scene.lives) { 
+          setTimeout(gameOver(scene), 2000)
+        }
+      }
+    }
   });
   
   itemSprite.on('pointerdown', () => {
 
     if (itemSprite.isVirus) {
-      scene.backgroundSong.stop()
-      scene.gameOverSound.play()
-      alert('GAME OVER')
-      scene.scene.restart()
-    } else {
+      gameOver(scene)
+    } else if (scene.lives){
       const score = scene.scoreText
       const currentScore = score.text
       scene.hitSound.play()
 
       itemTween.stop()
-      // debugger
-      // scene.physics.moveToObject(itemSprite, this.scene.basket, 100, 50)
+
       const newItemTween = scene.tweens.add({
         targets: itemSprite,
-        y: 350, //window.innerHeight / 2,
+        y: 350,
         x: 200,
         duration: 200,
         ease: 'Sine',
@@ -173,4 +157,11 @@ function createItem(scene) {
 
 function getRandomNumberSignal() {
   return (Math.random() - 0.5) * 2
+}
+
+function gameOver(scene) {
+  scene.backgroundSong.stop()
+  scene.gameOverSound.play()
+  alert('GAME OVER')
+  scene.scene.restart()
 }
