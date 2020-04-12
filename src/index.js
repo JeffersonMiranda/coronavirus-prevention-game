@@ -63,7 +63,7 @@ function MenuCreate() {
   
   const startButton = this.add.dom(window.innerWidth / 2, window.innerHeight - 400, 'div', null ,'INICIAR')
 
-  startButton.setClassName('startButton')
+  startButton.setClassName('startButton disable-dbl-tap-zoom')
 
   const currentScene = this
 
