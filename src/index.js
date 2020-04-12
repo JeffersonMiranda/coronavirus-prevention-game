@@ -39,26 +39,31 @@ const game = new Phaser.Game(config)
 
 function MenuCreate() {
   this.background = this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'menuBackground')
-  this.background.setScale(3.4)
+  this.background.setScale(3.8)
 
   const gamePlayScene = new GamePlayScene()
 
   this.scene.add('gamePlay', GamePlayScene);
 
-  const startStyle = {
-    'background-color': 'green',
-    'max-width': '400px',
-    width: '100%',
-    height: '150px',
-    font: 'bold 48px Arial',
-    color: 'white',
-    'line-height': 3,
-    'text-align': 'center',
-    'border-radius': '25px'
+  const gameName = this.add.dom(window.innerWidth / 2, 200, 'h1', null, 'CORONA PREVENTION')
+  gameName.setClassName('gameName')
 
-  }
+  const rulesItems = [
+    'Regras',
+    '1. Colete todos os itens de combate e prevenção ao novo coronavírus.',
+    '2. Você inicia com três vidas, a cada item não coletado, uma vida é perdida.',
+    '3. O jogo é finalizado se todas as vidas forem perdidas ou se o vírus for coletado.' 
+  ]
 
-  const startButton = this.add.dom(window.innerWidth / 2, window.innerHeight - 400, 'div', startStyle ,'INICIAR')
+
+  const rulesBoard = this.add.dom(window.innerWidth / 2, window.innerHeight / 3, 'div')
+
+  rulesBoard.setClassName('rulesBoard')
+  rulesBoard.setHTML(`<h1> ${rulesItems[0]} </h1> <ul> <li> ${rulesItems[1]} </li> <li> ${rulesItems[2]} </li> <li> ${rulesItems[3]} </li> </ul>`)
+  
+  const startButton = this.add.dom(window.innerWidth / 2, window.innerHeight - 400, 'div', null ,'INICIAR')
+
+  startButton.setClassName('startButton')
 
   const currentScene = this
 
@@ -66,6 +71,10 @@ function MenuCreate() {
              .on('click', () => {
               currentScene.scene.start('gamePlay');
              })
+
+  const developerName = this.add.dom(window.innerWidth / 2, window.innerHeight - 200, 'h6', null ,'Desenvolvido por Jefferson Miranda')
+
+  developerName.setClassName('developer')
 }
 
 function preload() {
