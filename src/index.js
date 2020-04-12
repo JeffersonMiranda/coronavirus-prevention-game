@@ -56,7 +56,7 @@ function MenuCreate() {
   ]
 
 
-  const rulesBoard = this.add.dom(window.innerWidth / 2, window.innerHeight / 3, 'div')
+  const rulesBoard = this.add.dom(window.innerWidth / 2, window.innerHeight / 2.5, 'div')
 
   rulesBoard.setClassName('rulesBoard')
   rulesBoard.setHTML(`<h1> ${rulesItems[0]} </h1> <ul> <li> ${rulesItems[1]} </li> <li> ${rulesItems[2]} </li> <li> ${rulesItems[3]} </li> </ul>`)

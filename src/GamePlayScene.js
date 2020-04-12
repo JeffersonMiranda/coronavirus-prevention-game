@@ -17,16 +17,16 @@ export default class GamePlayScene extends Phaser.Scene {
     this.background = this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'gameplayBackground')
     this.background.setScale(3.4)
 
-    this.basket = this.add.image(200, 200, 'basket')
+    this.basket = this.add.image(200, 150, 'basket')
     this.basket.setScale(0.5)
 
-    this.scoreText = this.add.text(this.basket.x + 140, 165, '0', { fontSize: '80px', fill: '#fff' });
+    this.scoreText = this.add.text(this.basket.x + 140, 120, '0', { fontSize: '80px', fill: '#fff' });
 
     this.lives = 3
     this.livesBoard = this.physics.add.staticGroup()
 
     for (let index = 1; index <= 3; index++) {
-      this.livesBoard.create(window.innerWidth - (70 * index), 200 , 'heart')
+      this.livesBoard.create(window.innerWidth - (70 * index), 150 , 'heart')
     }
     
     const newItem = () => this.createItem(this)
@@ -42,7 +42,7 @@ export default class GamePlayScene extends Phaser.Scene {
     const currentScene = this
 
     this.time.addEvent({
-      delay: 15000,
+      delay: 8000,
       callback: () => {
         const currentDelay = currentScene.itemsCreation.delay
         const newDelay = currentDelay - (currentDelay * 0.25)
