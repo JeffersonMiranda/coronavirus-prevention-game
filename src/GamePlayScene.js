@@ -106,7 +106,7 @@ export default class GamePlayScene extends Phaser.Scene {
           targets: itemSprite,
           y: 350,
           x: 200,
-          duration: 200,
+          duration: 100,
           ease: 'Sine',
           onComplete: () => {
             itemSprite.alpha = 0
