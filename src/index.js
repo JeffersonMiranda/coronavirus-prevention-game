@@ -39,13 +39,16 @@ const game = new Phaser.Game(config)
 
 function MenuCreate() {
   this.background = this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'menuBackground')
-  this.background.setScale(3.8)
+  this.background.setScale(2.7)
+
+  this.virus1 = this.add.image(140, 120, 'virus').setScale(0.5)
+  this.virus2 = this.add.image(window.innerWidth - 180, 250, 'virus').setScale(0.5)
 
   const gamePlayScene = new GamePlayScene()
 
   this.scene.add('gamePlay', GamePlayScene);
 
-  const gameName = this.add.dom(window.innerWidth / 2, 200, 'h1', null, 'CORONA PREVENTION')
+  const gameName = this.add.dom(window.innerWidth / 2, 200, 'h1', null, 'CORONA PREVENTION GAME')
   gameName.setClassName('gameName')
 
   const rulesItems = [
@@ -61,7 +64,7 @@ function MenuCreate() {
   rulesBoard.setClassName('rulesBoard')
   rulesBoard.setHTML(`<h1> ${rulesItems[0]} </h1> <ul> <li> ${rulesItems[1]} </li> <li> ${rulesItems[2]} </li> <li> ${rulesItems[3]} </li> </ul>`)
   
-  const startButton = this.add.dom(window.innerWidth / 2, window.innerHeight - 400, 'div', null ,'INICIAR')
+  const startButton = this.add.dom(window.innerWidth / 2, window.innerHeight - 400, 'div', null ,'JOGAR')
 
   startButton.setClassName('startButton disable-dbl-tap-zoom')
 
