@@ -1,4 +1,5 @@
 {
+  "name": "Corona Prevention Game - Aprenda a se proteger do novo coronavírus com este simples jogo!",
   "short_name": "Corona Prevention Game",
   "icons": [
     {
@@ -12,7 +13,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": "/index.html",
   "background_color": "#3367D6",
   "display": "fullscreen",
   "scope": "/",
