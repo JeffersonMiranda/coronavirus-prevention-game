@@ -1,6 +1,5 @@
 {
-  "name": "Corona Prevention Game - Aprenda a se proteger do novo coronavírus com este simples jogo!",
-  "short_name": "Corona Prevention Game",
+  "name": "Corona Prevention Game",
   "icons": [
     {
       "src": "/public/images/virus.png",
