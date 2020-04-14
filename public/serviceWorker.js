@@ -1,3 +1,5 @@
+var cacheName = 'phaser-v1';
+
 self.addEventListener('install', function(event) {
   console.log('sw install');
   event.waitUntil(
