@@ -8,25 +8,47 @@
     <link rel="icon" href="/public/images/virus.png" sizes="16x16" type="image/png">
     <title> Corona Prevention Game </title>
   </head>
-  
-  <script>
-    if ('serviceWorker' in navigator) {
-    console.log("Will the service worker register?");
-    navigator.serviceWorker.register('serviceWorker.js')
-      .then(function(reg){
-        console.log("Yes, it did.");
-      }).catch(function(err) {
-        console.log("No it didn't. This happened: ", err)
-      });
-    }
-  </script>
-
   <style>
     html, body {
       margin: 0;
       user-select: none;
       /* width: 100vw;
       height: 100vh; */
+    }
+
+    .modal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      z-index: 99999;
+      max-width: 600px;
+      height: 300px;
+      background-color: #51443b;
+      text-align: center;
+      font-size: 40px;
+      border-radius: 20px;
+      color: white;
+      font-family: 'Courier New';
+      padding: 40px;
+    }
+
+    .modal p {
+      margin: 0 0 20px 0;
+    }
+
+    .modal button {
+      background-color: transparent;
+      font-size: 40px;
+      color: white;
+      border: none;
+      font-family: 'Courier New';
+      font-weight: bold;
+      display: block;
+      text-align: center;
+      margin: 25px auto auto;
     }
 
     .disable-dbl-tap-zoom {
@@ -123,5 +145,49 @@
   </style>
 
   <body class="disable-dbl-tap-zoom">
+      <div id="myModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+              <p>Gostaria de adicionar um atalho deste jogo na tela inicial do seu celular?</p>
+              <button onclick="offlinePrompt()">Sim</button>
+              <button class="close">Não, obrigado(a)</button>
+          </div>
+      </div>
   </body>
 </html>
+ 
+<script>
+    if ('serviceWorker' in navigator) {
+             window.addEventListener('load', function() {
+                 navigator.serviceWorker.register('/serviceWorker.js', {scope: '/'}).then(function(registration) {
+                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                 }, function(err) {
+                     console.log('ServiceWorker registration failed: ', err);
+                 });
+             });
+         }
+         let deferredPrompt;
+         window.addEventListener('beforeinstallprompt', function (e) {
+             console.log('beforeinstallprompt triggered');
+             e.preventDefault();
+             deferredPrompt = e;
+             modal.style.display = 'block';
+         });
+         // Get the modal
+         var modal = document.getElementById('myModal');
+         // Get the <span> element that closes the modal
+         var span = document.getElementsByClassName('close')[0];
+         // When the user clicks anywhere outside of the modal, close it
+         window.onclick = function(event) {
+             if (event.target == modal) {
+                 modal.style.display = 'none';
+             }
+         }
+         // When the user clicks on <span> (x), close the modal
+         span.onclick = function() {
+             modal.style.display = 'none';
+         }
+         function offlinePrompt() {
+             deferredPrompt.prompt();
+         }
+</script>
