@@ -1,6 +1,7 @@
 {
   "name": "Corona Prevention Game",
   "short_name": "Corona Prevention Game",
+  "description": "Corona Prevention Game",
   "icons": [
     {
       "src": "/public/images/virus.png",
@@ -13,7 +14,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/index.html",
+  "start_url": "/",
   "background_color": "#3367D6",
   "display": "fullscreen",
   "scope": "/",
