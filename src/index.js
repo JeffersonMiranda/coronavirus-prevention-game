@@ -12,7 +12,8 @@ import backgroundSong from "./assets/audio/background.wav"
 import hitSound from "./assets/audio/hit.wav"
 import gameOverSound from "./assets/audio/gameover.mp3"
 
-import GamePlayScene from './GamePlayScene'
+import gamePlayScene from './GamePlayScene'
+import gameOverScene from './GameOverScene'
 
 const config = {
   type: Phaser.AUTO,
@@ -44,25 +45,24 @@ function MenuCreate() {
   this.virus1 = this.add.image(140, 120, 'virus').setScale(0.5)
   this.virus2 = this.add.image(window.innerWidth - 180, 250, 'virus').setScale(0.5)
 
-  const gamePlayScene = new GamePlayScene()
-
-  this.scene.add('gamePlay', GamePlayScene);
+  this.scene.add('gamePlay', gamePlayScene)
+  this.scene.add('gameOver', gameOverScene)
 
   const gameName = this.add.dom(window.innerWidth / 2, 200, 'h1', null, 'CORONA PREVENTION GAME')
   gameName.setClassName('gameName')
 
   const rulesItems = [
     'Regras',
-    '1. Colete todos os itens de combate e prevenção ao novo coronavírus.',
-    '2. Você inicia com três vidas, a cada item não coletado, uma vida é perdida.',
-    '3. O jogo é finalizado se todas as vidas forem perdidas ou se o vírus for coletado.' 
+    '1. Capture todos os itens de combate e prevenção ao novo coronavírus.',
+    '2. Você inicia com três vidas, a cada item não capturado, uma vida é perdida.',
+    '3. O jogo é finalizado se todas as vidas forem perdidas ou se o vírus for capturado.' 
   ]
 
 
   const rulesBoard = this.add.dom(window.innerWidth / 2, window.innerHeight / 2.5, 'div')
 
   rulesBoard.setClassName('rulesBoard')
-  rulesBoard.setHTML(`<h1> ${rulesItems[0]} </h1> <ul> <li> ${rulesItems[1]} </li> <li> ${rulesItems[2]} </li> <li> ${rulesItems[3]} </li> </ul>`)
+  rulesBoard.setHTML(`<h1> ${rulesItems[0]} </h1> <ul class="no-list-style"> <li> ${rulesItems[1]} </li> <li> ${rulesItems[2]} </li> <li> ${rulesItems[3]} </li> </ul>`)
   
   const startButton = this.add.dom(window.innerWidth / 2, window.innerHeight - 400, 'div', null ,'JOGAR')
 
