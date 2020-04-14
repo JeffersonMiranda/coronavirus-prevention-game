@@ -1,5 +1,6 @@
 {
   "name": "Corona Prevention Game",
+  "short_name": "Corona Prevention Game",
   "icons": [
     {
       "src": "/public/images/virus.png",
