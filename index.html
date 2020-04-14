@@ -14,6 +14,10 @@
       touch-action: manipulation;
     }
 
+    .no-list-style {
+      list-style: none;
+    }
+
     .gameName {
       font-size: 68px;
       font-family: 'Comic Sans MS';
@@ -38,7 +42,6 @@
 
     .rulesBoard ul {
       margin-top: 30px;
-      list-style: none;
       max-width: 750px;
       width: 100%;
       font-weight: bold;
@@ -51,14 +54,14 @@
 
     .startButton {
       background-color: #cecece;
-      max-width: 400px;
-      width: 100%;
+      padding: 10px 60px;
       height: 150px;
-      font-family: Arial;
+      min-width: 350px;
+      font-family: 'Courier New';
       font-weight: bold;
-      font-size: 48px;
+      font-size: 72px;
       color: #4c4442;
-      line-height: 3;
+      line-height: 2.2;
       text-align: center;
       border-radius: 25px;
       -webkit-box-shadow: 0px 0px 50px 0px rgba(206, 206, 206);
@@ -71,6 +74,32 @@
       text-transform: uppercase;
       color: white;
       letter-spacing: 2px;
+    }
+
+    .more-information-link {
+      color: white;
+      font-size: 42px;
+      font-family: 'Courier New';
+      text-align: center;
+      max-width: 600px;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .share-header {
+      color: white;
+      font-size: 32px;
+      font-family: 'Courier New';
+      text-align: center;
+      /* max-width: 00px; */
+    }
+
+    .whatsapp-link {
+      display: inline-block;
+      width: 120px;
+      height: 120px;
+      background-size: 120px;
+      background: url('./src/assets/images/whatsapp.png') center no-repeat;
     }
   </style>
 
