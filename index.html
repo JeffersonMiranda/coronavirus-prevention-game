@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <!-- <meta name="viewport" content="initial-scale=1, maximum-scale=1"> -->
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/public/images/virus.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="public/images/virus.png" sizes="16x16" type="image/png">
     <title> Corona Prevention Game </title>
   </head>
   <style>
@@ -188,6 +188,8 @@
              modal.style.display = 'none';
          }
          function offlinePrompt() {
-             deferredPrompt.prompt();
+             if (deferredPrompt) {
+               deferredPrompt.prompt();
+             }
          }
 </script>
