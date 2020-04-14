@@ -3,7 +3,7 @@ import Phaser from 'phaser'
 export default class GamePlayScene extends Phaser.Scene {
 
   constructor (config) {
-      super(config)
+    super(config)
   }
 
   create() {
@@ -121,12 +121,12 @@ export default class GamePlayScene extends Phaser.Scene {
   getRandomNumberSignal() {
     return (Math.random() - 0.5) * 2
   }
-  
+
   gameOver(scene) {
     scene.backgroundSong.stop()
     scene.gameOverSound.play()
-    alert('GAME OVER')
-    scene.scene.restart()
+    scene.scene.start('gameOver', {
+      points: scene.scoreText.text
+    })
   }
-
 }
