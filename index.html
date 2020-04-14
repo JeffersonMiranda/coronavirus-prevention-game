@@ -188,8 +188,9 @@
              modal.style.display = 'none';
          }
          function offlinePrompt() {
-             if (deferredPrompt) {
-               deferredPrompt.prompt();
-             }
+            if (typeof deferredPrompt != 'undefined') {
+              deferredPrompt.prompt();
+            }
+            modal.style.display = 'none'
          }
 </script>
