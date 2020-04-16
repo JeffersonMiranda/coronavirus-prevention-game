@@ -14,7 +14,7 @@ export default class GameOverScene extends Phaser.Scene {
 
   setNewScore(score) {
     const cookieName = 'corona_game_max_score'
-    this.maxScore = getCookie(cookieName)
+    this.maxScore = parseInt(getCookie(cookieName))
 
     if (this.maxScore == '' || score > this.maxScore) {
       setCookie(cookieName, score, 3200)
