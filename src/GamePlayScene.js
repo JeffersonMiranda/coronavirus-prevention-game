@@ -42,13 +42,14 @@ export default class GamePlayScene extends Phaser.Scene {
     const currentScene = this
 
     this.time.addEvent({
-      delay: 8000,
+      delay: 5000,
       callback: () => {
         const currentDelay = currentScene.itemsCreation.delay
-        const newDelay = currentDelay - (currentDelay * 0.25)
+        const newDelay = currentDelay - (currentDelay * 0.15)
 
-        if (newDelay > 250) {
-          currentScene.itemsCreation.delay = currentDelay - (currentDelay * 0.25) 
+        if (newDelay > 360) {
+          console.log(newDelay)
+          currentScene.itemsCreation.delay = currentDelay - (currentDelay * 0.15) 
         }
       },
       repeat: -1
@@ -60,16 +61,26 @@ export default class GamePlayScene extends Phaser.Scene {
     const randomItem = items[Math.floor(Math.random() * items .length)];
     const randomItemHeightFall = Math.random() * (((window.innerHeight / 2 - 400))  - window.innerHeight / 2 ) + window.innerHeight / 2; 
   
-    var itemSprite = scene.physics.add.image(window.innerWidth / 2, window.innerHeight + 100, randomItem)
+    const origins = [
+      { direction: 1, origin: -50 },
+      { direction: this.getRandomNumberSignal(), origin: window.innerWidth / 2 },
+      { direction: -1, origin:  window.innerWidth + 50 }
+    ]
+    
+    const side = origins[Math.floor(Math.random() * origins .length)]
+
+    var itemSprite = scene.physics.add.image(side.origin, window.innerHeight + 100, randomItem)
                                        .setScale(0.5)
                                        .setInteractive()
   
-    itemSprite.isVirus = randomItem === 'virus'                                    
-    
-    const randomVelocity = Math.random() * (250 - 220) + 220;
+    const getVelocity = () => side.origin === window.innerWidth / 2 ? 
+                              this.getRandomFromRange(250, 220) : 
+                              this.getRandomFromRange(500, 450)
   
-    itemSprite.setVelocity(randomVelocity * this.getRandomNumberSignal());
-  
+    itemSprite.setVelocity(getVelocity() * side.direction);
+
+    itemSprite.isVirus = randomItem === 'virus'
+
     const itemTween = scene.tweens.add({
       targets: itemSprite,
       y: randomItemHeightFall,
@@ -120,6 +131,10 @@ export default class GamePlayScene extends Phaser.Scene {
   
   getRandomNumberSignal() {
     return (Math.random() - 0.5) * 2
+  }
+
+  getRandomFromRange(min, max) {
+    return Math.random() * (max - min) + min
   }
 
   gameOver(scene) {
