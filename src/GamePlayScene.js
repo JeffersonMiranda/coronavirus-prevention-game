@@ -42,14 +42,14 @@ export default class GamePlayScene extends Phaser.Scene {
     const currentScene = this
 
     this.time.addEvent({
-      delay: 5000,
+      delay: 2000,
       callback: () => {
         const currentDelay = currentScene.itemsCreation.delay
-        const newDelay = currentDelay - (currentDelay * 0.15)
+        const newDelay = currentDelay - (currentDelay * 0.10)
 
-        if (newDelay > 360) {
+        if (newDelay > 400) {
           console.log(newDelay)
-          currentScene.itemsCreation.delay = currentDelay - (currentDelay * 0.15) 
+          currentScene.itemsCreation.delay = currentDelay - (currentDelay * 0.10) 
         }
       },
       repeat: -1
