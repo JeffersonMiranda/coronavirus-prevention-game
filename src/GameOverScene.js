@@ -52,15 +52,12 @@ export default class GameOverScene extends Phaser.Scene {
 
     const gameLink = 'https://fierce-ridge-75316.herokuapp.com/'
     
-
-    const whatsappMessage = `${gameLink} CORONA PREVENTION GAME - Aprenda a se proteger do novo coronavírus com este simples jogo!`
-    
     const shareHeader = this.add.dom(window.innerWidth / 2, window.innerHeight / 1.45)
                                           .createFromHTML(`<h1 class="share-header" href=${informationLink}> Compartilhe este jogo com seus amigos! </h1>`)  
 
 
     const whatsappButtonHtml = `
-      <a class="whatsapp-link" href="https://api.whatsapp.com/send?text=${whatsappMessage}" data-action="share/whatsapp/share" target="_blank"></a>
+      <a class="whatsapp-link" href="https://api.whatsapp.com/send?text=${gameLink}" data-action="share/whatsapp/share" target="_blank"></a>
     ` 
 
     const whatsappShareButton = this.add.dom(window.innerWidth / 2.3, window.innerHeight / 1.33).createFromHTML(whatsappButtonHtml)
