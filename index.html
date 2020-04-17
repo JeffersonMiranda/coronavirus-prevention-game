@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
   <head>
     <meta charset="utf-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <!-- <meta name="viewport" content="initial-scale=1, maximum-scale=1"> -->
     <link rel="manifest" href="public/manifest.json">
     <link rel="icon" href="public/images/virus.png" sizes="16x16" type="image/png">
-    <title> Corona Prevention Game </title>
+    <title> Corona Prevention Game - Aprenda a se proteger do novo coronavírus com este simples jogo! </title>
+    <meta property="og:url"           content="http://fierce-ridge-75316.herokuapp.com/" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Corona Prevention Game" />
+    <meta property="og:description"   content="Aprenda a se proteger do novo coronavírus com este simples jogo!" />
+    <meta property="og:image"         content="https://fierce-ridge-75316.herokuapp.com/da3352bd-5015-479b-b4f6-0930aecb5f71" />
   </head>
   <style>
     html, body {
@@ -25,11 +30,12 @@
     }
 
     .gameName {
-      font-size: 68px;
-      font-family: 'Comic Sans MS';
+      font-size: 82px;
+      font-family: 'Courier New';
+      font-weight: bold;
       color: white;
       text-align: center;
-      text-shadow: 1px 1px 18px #b5b4b4;
+      /* text-shadow: 1px 1px 18px #b5b4b4; */
     }
 
     .rulesBoard {
@@ -87,7 +93,7 @@
       font-size: 42px;
       font-family: 'Courier New';
       text-align: center;
-      max-width: 600px;
+      max-width: 750px;
       display: inline-block;
       text-decoration: none;
     }
@@ -97,7 +103,6 @@
       font-size: 32px;
       font-family: 'Courier New';
       text-align: center;
-      /* max-width: 00px; */
     }
 
     .whatsapp-link {
@@ -107,8 +112,17 @@
       background-size: 120px;
       background: url('/public/images/whatsapp.png') center no-repeat;
     }
-  </style>
 
+    .fb-button-share {
+      width: 100px;
+      height: 100px;
+      background: url('public/images/facebook.png') center no-repeat;
+      background-size: 100px;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+  </style>
   <body class="disable-dbl-tap-zoom">
   </body>
 </html>

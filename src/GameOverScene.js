@@ -26,10 +26,10 @@ export default class GameOverScene extends Phaser.Scene {
     this.background = this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'menuBackground')
     this.background.setScale(2.7)
 
-    this.score = this.add.text(window.innerWidth / 2, 220, `${this.points} pontos`, { fontSize: '80px', fill: '#fff', align: 'center' }).setOrigin(0.5)
+    this.score = this.add.text(window.innerWidth / 2, window.innerHeight * 0.10, `${this.points} pontos`, { fontSize: '80px', fill: '#fff', align: 'center' }).setOrigin(0.5)
     
     if (getCookie('corona_game_max_score')) {
-      this.maxScore = this.add.text(window.innerWidth / 2, 320, `Pontuação máxima: ${this.maxScore}`, { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5)
+      this.maxScore = this.add.text(window.innerWidth / 2, window.innerHeight * 0.15, `Pontuação máxima: ${this.maxScore}`, { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5)
     }
 
     const tips = [
@@ -40,13 +40,13 @@ export default class GameOverScene extends Phaser.Scene {
       'Só saia de casa se houver necessidade'
     ]
 
-    const tipsContainer = this.add.dom(window.innerWidth / 2, window.innerHeight / 2.5, 'div')
-
+    const tipsContainer = this.add.dom(window.innerWidth / 2, window.innerHeight * 0.40, 'div')
+    
     tipsContainer.setClassName('rulesBoard')
     tipsContainer.setHTML(`<h1> LEMBRE-SE </h1> <ul list-style="initial"> <li> ${tips[0]} </li> <li> ${tips[1]} </li> <li> ${tips[2]} </li> <li> ${tips[3]} </li> <li> ${tips[4]} </li> </ul>`)
-
+    
     const informationLink = 'https://www.saude.gov.br/images/pdf/2020/marco/26/Cartaz-Geral-64x46cm.pdf'
-    const moreInformationHeader = this.add.dom(window.innerWidth / 2, window.innerHeight / 1.60)
+    const moreInformationHeader = this.add.dom(window.innerWidth / 2, tipsContainer.y + 350)
                                           .createFromHTML(`<a class="more-information-link" href=${informationLink} target="_blank"> Clique aqui e saiba mais como se proteger </a>`)  
                                           .setOrigin(0.5)
 
@@ -60,18 +60,17 @@ export default class GameOverScene extends Phaser.Scene {
 
 
     const whatsappButtonHtml = `
-    <a class="whatsapp-link" href="https://api.whatsapp.com/send?text=${gameLink}" data-action="share/whatsapp/share" target="_blank"></a>
+      <a class="whatsapp-link" href="https://api.whatsapp.com/send?text=${gameLink}" data-action="share/whatsapp/share" target="_blank"></a>
     ` 
 
     const whatsappShareButton = this.add.dom(window.innerWidth / 2.6, window.innerHeight / 1.33).createFromHTML(whatsappButtonHtml)
 
-    const facebookButtonHtml = `
-      <a href="https://www.facebook.com/sharer/sharer.php?t=${gameLink}&u=https://fierce-ridge-75316.herokuapp.com/" target="_blank">FACEBOOK</a>
-    ` 
+    const facebookButtonHtml = `<a class="fb-button-share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fierce-ridge-75316.herokuapp.com/"></a>`
 
-    const facebookShareButton = this.add.dom(window.innerWidth / 1.5, window.innerHeight / 1.33).createFromHTML(facebookButtonHtml)  
+    const facebookShareButton = this.add.dom(window.innerWidth / 1.5, window.innerHeight / 1.33)
+                                        .createFromHTML(facebookButtonHtml)
 
-    const restartButton = this.add.dom(window.innerWidth / 2, window.innerHeight - 250, 'div', null ,'JOGAR NOVAMENTE')
+    const restartButton = this.add.dom(window.innerWidth / 2, window.innerHeight - 210, 'div', null ,'JOGAR NOVAMENTE')
 
     restartButton.setClassName('startButton disable-dbl-tap-zoom')
 
@@ -81,5 +80,9 @@ export default class GameOverScene extends Phaser.Scene {
               .on('click', () => {
                 currentScene.scene.start('gamePlay');
               })
+
+    const developerName = this.add.dom(window.innerWidth / 2, window.innerHeight - 120, 'h6', null ,'Desenvolvido por Jefferson Miranda')
+
+    developerName.setClassName('developer')
   }
 }
