@@ -42,7 +42,7 @@ export default class GamePlayScene extends Phaser.Scene {
     const currentScene = this
 
     this.time.addEvent({
-      delay: 2000,
+      delay: 4000,
       callback: () => {
         const currentDelay = currentScene.itemsCreation.delay
         const newDelay = currentDelay - (currentDelay * 0.10)
@@ -72,7 +72,11 @@ export default class GamePlayScene extends Phaser.Scene {
     var itemSprite = scene.physics.add.image(side.origin, window.innerHeight + 100, randomItem)
                                        .setScale(0.5)
                                        .setInteractive()
-  
+
+    setTimeout(() => {
+      itemSprite.destroy()
+    }, 5000)
+
     const getVelocity = () => side.origin === window.innerWidth / 2 ? 
                               this.getRandomFromRange(250, 220) : 
                               this.getRandomFromRange(500, 450)
