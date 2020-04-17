@@ -78,8 +78,7 @@ export default class GameOverScene extends Phaser.Scene {
                 currentScene.scene.start('gamePlay');
               })
 
-    const developerName = this.add.dom(window.innerWidth / 2, window.innerHeight - 120, 'h6', null ,'Desenvolvido por Jefferson Miranda')
-
-    developerName.setClassName('developer')
+    const developerName = this.add.dom(window.innerWidth / 2, window.innerHeight - 60)
+                                  .createFromHTML(`<span class="developer"> Desenvolvido por <a target="blank" href="https://www.linkedin.com/in/jefferson-1994/">Jefferson Miranda </a> </span>`)
   }
 }
