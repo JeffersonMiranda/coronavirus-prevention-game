@@ -72,7 +72,7 @@ function MenuCreate() {
 
   startButton.addListener('click')
              .on('click', () => {
-              currentScene.scene.start('gameOver');
+              currentScene.scene.start('gamePlay');
              })
 
   const developerName = this.add.dom(window.innerWidth / 2, window.innerHeight - 200, 'h6', null ,'Desenvolvido por Jefferson Miranda')

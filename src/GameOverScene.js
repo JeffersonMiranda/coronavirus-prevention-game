@@ -45,29 +45,29 @@ export default class GameOverScene extends Phaser.Scene {
     tipsContainer.setClassName('rulesBoard')
     tipsContainer.setHTML(`<h1> LEMBRE-SE </h1> <ul list-style="initial"> <li> ${tips[0]} </li> <li> ${tips[1]} </li> <li> ${tips[2]} </li> <li> ${tips[3]} </li> <li> ${tips[4]} </li> </ul>`)
     
-    const informationLink = 'https://www.saude.gov.br/images/pdf/2020/marco/26/Cartaz-Geral-64x46cm.pdf'
+    const informationLink = 'https://coronavirus.saude.gov.br/'
     const moreInformationHeader = this.add.dom(window.innerWidth / 2, tipsContainer.y + 350)
                                           .createFromHTML(`<a class="more-information-link" href=${informationLink} target="_blank"> Clique aqui e saiba mais como se proteger </a>`)  
                                           .setOrigin(0.5)
 
-
+    const gameLink = 'https://fierce-ridge-75316.herokuapp.com/'
     
 
-    const gameLink =  'CORONA PREVENTION GAME - Aprenda a se proteger do novo coronavírus com este simples jogo!' //'https://fierce-ridge-75316.herokuapp.com/'
+    const whatsappMessage = `${gameLink} CORONA PREVENTION GAME - Aprenda a se proteger do novo coronavírus com este simples jogo!`
     
     const shareHeader = this.add.dom(window.innerWidth / 2, window.innerHeight / 1.45)
                                           .createFromHTML(`<h1 class="share-header" href=${informationLink}> Compartilhe este jogo com seus amigos! </h1>`)  
 
 
     const whatsappButtonHtml = `
-      <a class="whatsapp-link" href="https://api.whatsapp.com/send?text=${gameLink}" data-action="share/whatsapp/share" target="_blank"></a>
+      <a class="whatsapp-link" href="https://api.whatsapp.com/send?text=${whatsappMessage}" data-action="share/whatsapp/share" target="_blank"></a>
     ` 
 
-    const whatsappShareButton = this.add.dom(window.innerWidth / 2.6, window.innerHeight / 1.33).createFromHTML(whatsappButtonHtml)
+    const whatsappShareButton = this.add.dom(window.innerWidth / 2.3, window.innerHeight / 1.33).createFromHTML(whatsappButtonHtml)
 
-    const facebookButtonHtml = `<a class="fb-button-share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fierce-ridge-75316.herokuapp.com/"></a>`
+    const facebookButtonHtml = `<a class="fb-button-share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=${gameLink}"></a>`
 
-    const facebookShareButton = this.add.dom(window.innerWidth / 1.5, window.innerHeight / 1.33)
+    const facebookShareButton = this.add.dom(window.innerWidth / 1.7, window.innerHeight / 1.33)
                                         .createFromHTML(facebookButtonHtml)
 
     const restartButton = this.add.dom(window.innerWidth / 2, window.innerHeight - 210, 'div', null ,'JOGAR NOVAMENTE')
