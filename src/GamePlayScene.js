@@ -148,6 +148,8 @@ export default class GamePlayScene extends Phaser.Scene {
   }
 
   gameOverFallTween(scene, sprites) {
+    scene.itemsCreation.remove()
+
     return scene.tweens.add({
       targets: sprites,
       y: window.innerHeight + 100,
