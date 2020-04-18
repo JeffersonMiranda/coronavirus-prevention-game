@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import { getCookie, setCookie } from './cookies'
+import Cookies from 'js-cookie'
 
 export default class GameOverScene extends Phaser.Scene {
 
@@ -14,10 +14,10 @@ export default class GameOverScene extends Phaser.Scene {
 
   setNewScore(score) {
     const cookieName = 'corona_game_max_score'
-    this.maxScore = parseInt(getCookie(cookieName))
+    this.maxScore = parseInt(Cookies.get(cookieName))
 
     if (this.maxScore == '' || score > this.maxScore) {
-      setCookie(cookieName, score, 3200)
+      Cookies.set(cookieName, score, { expires: 100000 })
       this.maxScore = score
     }
   }
@@ -28,7 +28,7 @@ export default class GameOverScene extends Phaser.Scene {
 
     this.score = this.add.text(window.innerWidth / 2, window.innerHeight * 0.10, `${this.points} pontos`, { fontSize: '80px', fill: '#fff', align: 'center' }).setOrigin(0.5)
     
-    if (getCookie('corona_game_max_score')) {
+    if (Cookies.get('corona_game_max_score')) {
       this.maxScore = this.add.text(window.innerWidth / 2, window.innerHeight * 0.15, `Pontuação máxima: ${this.maxScore}`, { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5)
     }
 
