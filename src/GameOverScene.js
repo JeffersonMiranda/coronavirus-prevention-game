@@ -50,7 +50,7 @@ export default class GameOverScene extends Phaser.Scene {
                                           .createFromHTML(`<a class="more-information-link" href=${informationLink} target="_blank"> Clique aqui e saiba mais como se proteger </a>`)  
                                           .setOrigin(0.5)
 
-    const gameLink = 'https://coronapreventiongame.herokuapp.com/'
+    const gameLink = 'https://bit.ly/3excIBN'
     
     const shareHeader = this.add.dom(window.innerWidth / 2, window.innerHeight / 1.38)
                                           .createFromHTML(`<h1 class="share-header" href=${informationLink}> Compartilhe este jogo com seus amigos! </h1>`)  
