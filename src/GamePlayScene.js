@@ -76,7 +76,7 @@ export default class GamePlayScene extends Phaser.Scene {
 
     setTimeout(() => {
       itemSprite.destroy()
-    }, 5000)
+    }, 10000)
 
     const getVelocity = () => side.origin === window.innerWidth / 2 ? 
                               this.getRandomFromRange(250, 220) : 
@@ -99,36 +99,30 @@ export default class GamePlayScene extends Phaser.Scene {
           scene.lives--
   
           if (!scene.lives) { 
-            setTimeout(() => {
-              scene.gameOver(scene)
-            }, 1000)
+            scene.gameOverFallTween(scene, [scene.basket, scene.scoreText, scene.livesBoard])
           }
         }
       }
     });
-    
+
     itemSprite.on('pointerdown', () => {
   
       if (itemSprite.isVirus) {
-        scene.gameOver(scene)
-      } else if (scene.lives){
+        scene.cleanLivesBoard(scene)
+        
+        if (scene.lives) { 
+          scene.lives = 0
+          scene.itemGoToBasket(itemSprite, () => {
+            scene.gameOverFallTween(scene, [scene.basket, scene.scoreText, scene.livesBoard])
+          })
+        }
+      } else if (scene.lives) {
         const score = scene.scoreText
         const currentScore = score.text
+
         scene.hitSound.play()
-  
         itemTween.stop()
-  
-        const newItemTween = scene.tweens.add({
-          targets: itemSprite,
-          y: 350,
-          x: 200,
-          duration: 100,
-          ease: 'Sine',
-          onComplete: () => {
-            itemSprite.alpha = 0
-          }
-        });
-  
+        scene.itemGoToBasket(itemSprite)
         score.setText(parseInt(currentScore) + 10)
       }
     });
@@ -145,8 +139,46 @@ export default class GamePlayScene extends Phaser.Scene {
   gameOver(scene) {
     scene.backgroundSong.stop()
     scene.gameOverSound.play()
-    scene.scene.start('gameOver', {
-      points: scene.scoreText.text
+
+    scene.gameOverSound.once('complete', () => {
+      scene.scene.start('gameOver', {
+        points: scene.scoreText.text
+      })
     })
+  }
+
+  gameOverFallTween(scene, sprites) {
+    return scene.tweens.add({
+      targets: sprites,
+      y: window.innerHeight + 100,
+      rotation: 0.75,
+      duration: 1500,
+      ease: 'Sine',
+      onStart: () => {
+        scene.gameOver(scene)
+      }
+    });
+  }
+
+  itemGoToBasket(itemSprite, additionalOnComplete) {
+    return this.tweens.add({
+      targets: itemSprite,
+      y: 350,
+      x: 200,
+      duration: 100,
+      ease: 'Sine',
+      onComplete: () => {
+        itemSprite.alpha = 0
+        if (additionalOnComplete){
+          additionalOnComplete()
+        }
+      }
+    });
+  }
+
+  cleanLivesBoard(scene) {
+    for (let index = scene.lives - 1; index >= 0; index--) {
+      scene.livesBoard.getChildren()[index].alpha = 0
+    }
   }
 }
