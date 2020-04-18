@@ -36,7 +36,11 @@ const config = {
   }
 };
 
-const game = new Phaser.Game(config)
+ if (window.outerWidth < 768) {
+   const game = new Phaser.Game(config)
+ } else {
+   alert('Você precisa de um smartphone para entrar no jogo!')
+ }
 
 function MenuCreate() {
   this.background = this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'menuBackground')
