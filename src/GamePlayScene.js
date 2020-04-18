@@ -10,6 +10,7 @@ export default class GamePlayScene extends Phaser.Scene {
     this.hitSound = this.sound.add('hitSound');
     this.gameOverSound = this.sound.add('gameOverSound')
     this.backgroundSong = this.sound.add('backgroundSong');
+    this.backgroundSong.setVolume(0.4)
     this.backgroundSong.play({
       loop: -1
     })
