@@ -46,13 +46,13 @@ export default class GameOverScene extends Phaser.Scene {
     tipsContainer.setHTML(`<h1> LEMBRE-SE </h1> <ul list-style="initial"> <li> ${tips[0]} </li> <li> ${tips[1]} </li> <li> ${tips[2]} </li> <li> ${tips[3]} </li> <li> ${tips[4]} </li> </ul>`)
     
     const informationLink = 'https://coronavirus.saude.gov.br/'
-    const moreInformationHeader = this.add.dom(window.innerWidth / 2, tipsContainer.y + 350)
+    const moreInformationHeader = this.add.dom(window.innerWidth / 2, tipsContainer.y + 375)
                                           .createFromHTML(`<a class="more-information-link" href=${informationLink} target="_blank"> Clique aqui e saiba mais como se proteger </a>`)  
                                           .setOrigin(0.5)
 
     const gameLink = 'https://fierce-ridge-75316.herokuapp.com/'
     
-    const shareHeader = this.add.dom(window.innerWidth / 2, window.innerHeight / 1.45)
+    const shareHeader = this.add.dom(window.innerWidth / 2, window.innerHeight / 1.38)
                                           .createFromHTML(`<h1 class="share-header" href=${informationLink}> Compartilhe este jogo com seus amigos! </h1>`)  
 
 
@@ -60,14 +60,14 @@ export default class GameOverScene extends Phaser.Scene {
       <a class="whatsapp-link" href="https://api.whatsapp.com/send?text=${gameLink}" data-action="share/whatsapp/share" target="_blank"></a>
     ` 
 
-    const whatsappShareButton = this.add.dom(window.innerWidth / 2.3, window.innerHeight / 1.33).createFromHTML(whatsappButtonHtml)
+    const whatsappShareButton = this.add.dom(window.innerWidth / 2, window.innerHeight / 1.27).createFromHTML(whatsappButtonHtml)
 
-    const facebookButtonHtml = `<a class="fb-button-share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=${gameLink}"></a>`
+    // const facebookButtonHtml = `<a class="fb-button-share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=${gameLink}"></a>`
 
-    const facebookShareButton = this.add.dom(window.innerWidth / 1.7, window.innerHeight / 1.33)
-                                        .createFromHTML(facebookButtonHtml)
+    // const facebookShareButton = this.add.dom(window.innerWidth / 1.7, window.innerHeight / 1.20)
+    //                                     .createFromHTML(facebookButtonHtml)
 
-    const restartButton = this.add.dom(window.innerWidth / 2, window.innerHeight - 210, 'div', null ,'JOGAR NOVAMENTE')
+    const restartButton = this.add.dom(window.innerWidth / 2, window.innerHeight - 160, 'div', null ,'JOGAR NOVAMENTE')
 
     restartButton.setClassName('startButton disable-dbl-tap-zoom')
 
